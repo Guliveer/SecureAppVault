@@ -1,0 +1,16 @@
+﻿<Window x:Class="SecureAppVault.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SecureAppVault" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Name="UnlockVaultButton" Content="{Binding IsUnlocked, Converter={StaticResource BoolToLockContentConverter}}" Width="200" Height="50" Click="UnlockVaultButton_Click"/>
+            <StackPanel Visibility="{Binding IsUnlocked, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button Name="AddAppButton" Content="Add Application" Width="200" Height="50" Click="AddAppButton_Click"/>
+                <Button Name="RemoveAppButton" Content="Remove Application" Width="200" Height="50" Click="RemoveAppButton_Click"/>
+                <Button Name="RunAppButton" Content="Run Application" Width="200" Height="50" Click="RunAppButton_Click"/>
+                <ListBox Name="AppListBox" ItemsSource="{Binding WhitelistedApps}" DisplayMemberPath="Name" Width="200" Height="200"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

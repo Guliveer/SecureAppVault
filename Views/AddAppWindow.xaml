@@ -1,0 +1,40 @@
+﻿<Window x:Class="SecureAppVault.Views.AddAppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Application" Height="200" Width="400">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <TextBlock x:Name="Placeholder" 
+                                       Text="{TemplateBinding Tag}" 
+                                       Foreground="Gray" 
+                                       IsHitTestVisible="False" 
+                                       VerticalAlignment="Center" 
+                                       Margin="5,0,0,0" 
+                                       Opacity="0.5" />
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="Placeholder" Property="Opacity" Value="0" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="Placeholder" Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <TextBox Name="AppNameTextBox" Tag="Application Name" Margin="5" />
+            <TextBox Name="AppPathTextBox" Tag ="Application Path" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5" />
+        </StackPanel>
+    </Grid>
+</Window>
